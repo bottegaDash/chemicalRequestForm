@@ -1,1 +1,5 @@
-<h1>Homepage</h1>
+<% if current_user.try(:type) == 'AdminUser' %>
+  Admin user home page
+<% else %>
+  Empoyee user home page
+<% end %>
