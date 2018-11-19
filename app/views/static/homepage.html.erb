@@ -1,5 +1,5 @@
 <% if current_user.try(:type) == 'AdminUser' %>
-  Admin user home page
+  <%= render "admin" %>
 <% else %>
-  Empoyee user home page
+  <%= render "employee" %>
 <% end %>
