@@ -1,0 +1,22 @@
+
+<%= form_for(@anouncement_item) do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :details %>
+    <%= f.text_area :details %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<% @anouncements.each do |a|%>
+  Title:<%= a.title %>
+  <br>
+  Details:
+  <%= a.details %>
+  <br>
+<% end %>
