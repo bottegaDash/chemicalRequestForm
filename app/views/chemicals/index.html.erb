@@ -1,0 +1,32 @@
+<% if current_user.try(:type) == 'AdminUser' %>
+  <%= form_for(@chemical_item) do |f| %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+
+  <% @chemical_items.each do |c| %>
+    <% if c.draft? %>
+      <%= form_for(c) do |f| %>
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= c.name %>
+      <%= link_to 'delete', c, method: :delete%>
+      <%= link_to 'Edit', edit_chemical_path(c) %>
+    <% end %>
+    <br>
+  <% end %>
+<% else %>
+  You do not have access to this page
+<% end %>
