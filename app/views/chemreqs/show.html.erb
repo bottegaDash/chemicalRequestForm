@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Emergencey:</strong>
+  <%= @chemreq.emergencey %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @chemreq.comments %>
+</p>
+
+<% @chemreq.carts.each do |t| %>
+  <p><%= t.name %></p>
+<% end %>
+<%= link_to 'Edit', edit_chemreq_path(@chemreq) %> |
+<%= link_to 'Back', chemreqs_path %>

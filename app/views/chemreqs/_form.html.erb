@@ -1,0 +1,21 @@
+<%= form_for @chemreq do |f| %>
+
+  <div class="field">
+    <%= f.label :emergencey %>
+    <%= f.text_field :emergencey %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comments %>
+    <%= f.text_field :comments %>
+  </div>
+
+  <%= f.fields_for :carts do |cart| %>
+    <%= render 'cart_fields', :f => cart %>
+  <% end %>
+  <%= link_to_add_association 'add chem', f, :carts %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

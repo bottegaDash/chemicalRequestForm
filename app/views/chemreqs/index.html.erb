@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Chemreqs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Emergencey</th>
+      <th>Comments</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @chemreqs.each do |chemreq| %>
+      <tr>
+        <td><%= chemreq.emergencey %></td>
+        <td><%= chemreq.comments %></td>
+        <td><%= link_to 'Show', chemreq %></td>
+        <td><%= link_to 'Edit', edit_chemreq_path(chemreq) %></td>
+        <td><%= link_to 'Destroy', chemreq, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Chemreq', new_chemreq_path %>
