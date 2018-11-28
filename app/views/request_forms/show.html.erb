@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Emergency:</strong>
+  <%= @request_form.emergency %>
+</p>
+
+<p>
+  <strong>Additional comments:</strong>
+  <%= @request_form.additional_comments %>
+</p>
+
+<ul>
+<% @request_form.carts.each do |c| %>
+  <li><%= c.chemical %>-<%= c.count %></li>
+<% end %>
+</ul>
+
+<%= link_to 'Edit', edit_request_form_path(@request_form) %> |
+<%= link_to 'Back', request_forms_path %>
