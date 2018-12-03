@@ -1,1 +1,21 @@
-  <%= react_component 'RequestForm', { reqForm: @request_form } %>
+<%= form_for @request_form do |f| %>
+
+  <div class="field">
+    <%= f.label :emergency %>
+    <%= f.text_field :emergency %>
+  </div>
+
+  <div class="field">
+    <%= f.label :additional_comments %>
+    <%= f.text_field :additional_comments %>
+  </div>
+
+  <%= f.simple_fields_for :carts do |cart| %>
+    <%= cart.object.chemical %>
+    <%= cart.text_field :count %>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
