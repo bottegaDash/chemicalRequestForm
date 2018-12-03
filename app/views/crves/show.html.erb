@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Emergency:</strong>
+  <%= @crf.emergency %>
+</p>
+
+<p>
+  <strong>Additional comments:</strong>
+  <%= @crf.additional_comments %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @crf.status %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @crf.date %>
+</p>
+
+<%= link_to 'Edit', edit_crf_path(@crf) %> |
+<%= link_to 'Back', crves_path %>

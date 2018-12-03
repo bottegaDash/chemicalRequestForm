@@ -1,0 +1,2 @@
+class Crf < ApplicationRecord
+end

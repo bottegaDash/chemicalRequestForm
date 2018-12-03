@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Crves</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Emergency</th>
+      <th>Additional comments</th>
+      <th>Status</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @crves.each do |crf| %>
+      <tr>
+        <td><%= crf.emergency %></td>
+        <td><%= crf.additional_comments %></td>
+        <td><%= crf.status %></td>
+        <td><%= crf.date %></td>
+        <td><%= link_to 'Show', crf %></td>
+        <td><%= link_to 'Edit', edit_crf_path(crf) %></td>
+        <td><%= link_to 'Destroy', crf, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Crf', new_crf_path %>

@@ -1,0 +1,37 @@
+<%= form_with(model: crf, local: true) do |form| %>
+  <% if crf.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(crf.errors.count, "error") %> prohibited this crf from being saved:</h2>
+
+      <ul>
+      <% crf.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :emergency %>
+    <%= form.text_field :emergency %>
+  </div>
+
+  <div class="field">
+    <%= form.label :additional_comments %>
+    <%= form.text_field :additional_comments %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.number_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
