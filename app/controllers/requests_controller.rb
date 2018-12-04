@@ -4,7 +4,11 @@ class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.json
   def index
-    @requests = Request.submitted_by(current_user)
+    if current_user.try(:type) == 'AdminUser'
+      @requests = Request.all
+    else
+      @requests = Request.submitted_by(current_user)
+    end
   end
 
   # GET /requests/1
@@ -24,6 +28,14 @@ class RequestsController < ApplicationController
 
   # GET /requests/1/edit
   def edit
+    if current_user.try(:type) == 'AdminUser'
+      @requests = Request.all
+    else
+      @request = Request.submitted_by(current_user).find(params[:id])
+      respond_to do |format|
+        format.html { redirect_to @request, notice: 'You can not edit this' }
+      end
+    end
   end
 
   # POST /requests

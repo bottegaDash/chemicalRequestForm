@@ -1,0 +1,42 @@
+<%= form_with(model: request, local: true) do |form| %>
+  <% if request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.fields_for :carts do |cart| %>
+    <%= cart.label :chemical, cart.object.chemical %>
+    <%= cart.label_field :cart, cart.object.count %>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :emergency %>
+    <%= form.label :emergency, form.object.emergency %>
+  </div>
+
+  <div class="field">
+    <%= form.label :additional_comments %>
+    <%= form.label :additional_comments, form.object.additional_comments %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.label :date, form.object.date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.number_field :status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
