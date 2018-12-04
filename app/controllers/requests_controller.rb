@@ -65,7 +65,7 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1.json
   def update
     respond_to do |format|
-      if @request.update(request_params)
+      if @request.update(status_request_params)
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }
         format.json { render :show, status: :ok, location: @request }
       else
@@ -89,11 +89,16 @@ class RequestsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_request
       @request = Request.find(params[:id])
+      @final_request = Request.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
       params.require(:request).permit(:emergency, :additional_comments, :status, :date,
                                       carts_attributes: [:id, :chemical, :count])
+    end
+
+    def status_request_params
+      params.require(:request).permit(:status)
     end
 end
