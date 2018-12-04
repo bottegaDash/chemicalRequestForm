@@ -34,8 +34,8 @@ class RequestsController < ApplicationController
     respond_to do |format|
       chemical = Chemical.all
       i = 0
-      @request_form.carts.each do |cart|
-        cart.chemical = chem[i].name
+      @request.carts.each do |cart|
+        cart.chemical = chemical[i].name
         i = i + 1
       end
       if @request.save
