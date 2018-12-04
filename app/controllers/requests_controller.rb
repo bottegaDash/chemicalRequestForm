@@ -4,7 +4,7 @@ class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.json
   def index
-    @requests = Request.all
+    @requests = Request.submitted_by(current_user)
   end
 
   # GET /requests/1
@@ -32,6 +32,7 @@ class RequestsController < ApplicationController
     @request = Request.new(request_params)
 
     respond_to do |format|
+      @request.user_id = current_user.id
       chemical = Chemical.all
       i = 0
       @request.carts.each do |cart|
