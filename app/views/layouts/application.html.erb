@@ -10,9 +10,21 @@
   </head>
 
   <body>
-    <%= yield %>
     <% if current_user %>
-      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+      <div class="container">
+      	<div class="row">
+      		<div class="col-md-12">
+            <% if current_user.try(:type) == 'AdminUser' %>
+              <%= render "shared/admin_nav"%>
+            <% else %>
+              <%= render "shared/employee_nav"%>
+            <% end %>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
     <% end %>
   </body>
 </html>
