@@ -5,9 +5,15 @@ class RequestsController < ApplicationController
   # GET /requests.json
   def index
     if current_user.try(:type) == 'AdminUser'
-      @requests = Request.all
+      @requests_pending_non_emergency = Request.pending_non_emergency
+      @requests_pending_emergency = Request.pending_emergency
+      @requests_history = Request.history
+      #@requests_approved
+      #@requests_denied
     else
-      @requests = Request.submitted_by(current_user)
+      @requests_pending_non_emergency = Request.individ_pending_non_emergency(current_user)
+      @requests_pending_emergency = Request.individ_pending_emergency(current_user)
+      @requests_history = Request.individ_history(current_user)
     end
   end
 
