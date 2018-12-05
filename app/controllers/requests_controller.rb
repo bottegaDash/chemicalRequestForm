@@ -51,6 +51,7 @@ class RequestsController < ApplicationController
         cart.chemical = chemical[i].name
         i = i + 1
       end
+      @request.status = 1
       if @request.save
         format.html { redirect_to @request, notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
