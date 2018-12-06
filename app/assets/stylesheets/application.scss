@@ -12,3 +12,24 @@ body{
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+
+.chemical-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chemical-section > .columns-wrapper{
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chemical-section > .columns-wrapper > .column {
+  padding: 20px;
+  margin: 42px;
+  text-align: center;
+  border-bottom: 5px solid transparent;
+  border-radius: 10px;
+  transition: 1s;
+}

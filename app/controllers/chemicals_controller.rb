@@ -1,7 +1,7 @@
 class ChemicalsController < ApplicationController
   def index
     @chemical_item = Chemical.new
-    @chemical_items = Chemical.all
+    @chemical_items = Chemical.order('name ASC')
   end
 
   def create

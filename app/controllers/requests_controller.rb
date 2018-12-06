@@ -25,10 +25,11 @@ class RequestsController < ApplicationController
   # GET /requests/new
   def new
     @request = Request.new
-    chemical = Chemical.all
+    chemical = Chemical.order('name ASC')
     i = 0
     chemical.count.times {item = @request.carts.build
                           item.chemical = chemical[i].name
+                          item.count = 0
                           i =  i + 1}
   end
 
@@ -51,7 +52,7 @@ class RequestsController < ApplicationController
 
     respond_to do |format|
       @request.user_id = current_user.id
-      chemical = Chemical.all
+      chemical = Chemical.order('name ASC')
       i = 0
       @request.carts.each do |cart|
         cart.chemical = chemical[i].name
