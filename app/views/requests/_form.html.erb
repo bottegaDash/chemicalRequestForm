@@ -24,7 +24,7 @@
                 <% if index % 3 == count %>
                   <div class="form_group">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1"><%= cart.object.chemical%></span>
+                      <span class="input-group-text"><%= cart.object.chemical%></span>
                     </div>
                     <%= cart.number_field :count %>
                   </div>
@@ -41,12 +41,14 @@
 
       <div class="form_group">
         <%= form.label :emergency %>
-        <%= form.text_field :emergency %>
+        <br>
+        <%= form.text_area :emergency  %>
       </div>
 
       <div class="form_group">
         <%= form.label :additional_comments %>
-        <%= form.text_field :additional_comments %>
+        <br>
+        <%= form.text_area :additional_comments %>
       </div>
 
       <div class="form_group">
