@@ -1,22 +1,20 @@
+<div class="card">
+  <div class="card-body">
+    <%= form_for(@anouncement_item) do |f| %>
+      <div class="form-group">
+        <h4><%= f.label :title %></h4>
+        <%= f.text_field :title %>
+      </div>
+      <div class="form-group">
+        <%= f.label :details %>
+        <br>
+        <%= f.text_area :details, rows:"5"%>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<%= form_for(@anouncement_item) do |f| %>
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :details %>
-    <%= f.text_area :details %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-<% @anouncements.each do |a|%>
-  Title:<%= a.title %>
-  <br>
-  Details:
-  <%= a.details %>
-  <br>
-<% end %>
+<%= render "anouncements" %>

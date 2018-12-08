@@ -1,6 +1,6 @@
 class AnouncementsController < ApplicationController
   def index
-    @anouncements = Anouncement.all
+    @anouncements = Anouncement.all.by_created_at
     @anouncement_item = Anouncement.new
   end
 
