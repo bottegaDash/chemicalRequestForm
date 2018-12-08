@@ -1,3 +1,5 @@
+<div class="spacer-10"></div>
+
 <div class="card">
   <div class="card-body">
     <%= form_for(@anouncement_item) do |f| %>
@@ -11,7 +13,7 @@
         <%= f.text_area :details, rows:"5"%>
       </div>
       <div class="actions">
-        <%= f.submit %>
+        <%= f.submit class:"btn btn-primary"%>
       </div>
     <% end %>
   </div>
