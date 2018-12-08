@@ -1,88 +1,125 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Requests</h1>
+<div class="card">
+  <div class="card-body">
+    <h1>Requests</h1>
 
--------
-Pending Non Emergency
-<table>
-  <thead>
-    <tr>
-      <th>Emergency</th>
-      <th>Additional comments</th>
-      <th>Status</th>
-      <th>Date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Pending Non Emergency <%= @requests_pending_non_emergency.count %>
+            </button>
+          </h5>
+        </div>
 
-  <tbody>
-    <% @requests_pending_non_emergency.each do |request| %>
-      <tr>
-        <td><%= request.emergency %></td>
-        <td><%= request.additional_comments %></td>
-        <td><%= request.status %></td>
-        <td><%= request.date %></td>
-        <td><%= link_to 'Show', request %></td>
-        <td><%= link_to 'Edit', edit_request_path(request) %></td>
-        <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
--------
-Pending Emergency
-<table>
-  <thead>
-    <tr>
-      <th>Emergency</th>
-      <th>Additional comments</th>
-      <th>Status</th>
-      <th>Date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>Emergency</th>
+                  <th>Additional comments</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
 
-  <tbody>
-    <% @requests_pending_emergency.each do |request| %>
-      <tr>
-        <td><%= request.emergency %></td>
-        <td><%= request.additional_comments %></td>
-        <td><%= request.status %></td>
-        <td><%= request.date %></td>
-        <td><%= link_to 'Show', request %></td>
-        <td><%= link_to 'Edit', edit_request_path(request) %></td>
-        <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
--------
-history
-<table>
-  <thead>
-    <tr>
-      <th>Emergency</th>
-      <th>Additional comments</th>
-      <th>Status</th>
-      <th>Date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+              <tbody>
+                <% @requests_pending_non_emergency.each do |request| %>
+                  <tr>
+                    <td><%= request.emergency %></td>
+                    <td><%= request.additional_comments %></td>
+                    <td><%= request.status %></td>
+                    <td><%= request.date %></td>
+                    <td><%= link_to 'Show', request %></td>
+                    <td><%= link_to 'Edit', edit_request_path(request) %></td>
+                    <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Pending Emergency <%= @requests_pending_emergency.count %>
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>Emergency</th>
+                  <th>Additional comments</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
 
-  <tbody>
-    <% @requests_history.each do |request| %>
-      <tr>
-        <td><%= request.emergency %></td>
-        <td><%= request.additional_comments %></td>
-        <td><%= request.status %></td>
-        <td><%= request.date %></td>
-        <td><%= link_to 'Show', request %></td>
-        <td><%= link_to 'Edit', edit_request_path(request) %></td>
-        <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
+              <tbody>
+                <% @requests_pending_emergency.each do |request| %>
+                  <tr>
+                    <td><%= request.emergency %></td>
+                    <td><%= request.additional_comments %></td>
+                    <td><%= request.status %></td>
+                    <td><%= request.date %></td>
+                    <td><%= link_to 'Show', request %></td>
+                    <td><%= link_to 'Edit', edit_request_path(request) %></td>
+                    <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              History <%= @requests_history.count %>
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div class="card-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>Emergency</th>
+                  <th>Additional comments</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
 
-<%= link_to 'New Request', new_request_path %>
+              <tbody>
+                <% @requests_history.each do |request| %>
+                  <tr>
+                    <td><%= request.emergency %></td>
+                    <td><%= request.additional_comments %></td>
+                    <td><%= request.status %></td>
+                    <td><%= request.date %></td>
+                    <td><%= link_to 'Show', request %></td>
+                    <td><%= link_to 'Edit', edit_request_path(request) %></td>
+                    <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
