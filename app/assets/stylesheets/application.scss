@@ -42,3 +42,16 @@ textarea{
   width: 100%;
   height: 10px;
 }
+
+.chemical-section > .columns-wrapper > .column > .form_group {
+  display: flex;
+  justify-content: flex-end;
+}
+
+span > .input-group-text{
+  width: 100%;
+}
+
+.chemical-section > .columns-wrapper > .column > .form_group > .num {
+    width:25%;
+}

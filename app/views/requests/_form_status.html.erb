@@ -22,13 +22,11 @@
               <% index = 0 %>
               <%= form.fields_for :carts do |cart| %>
                 <% if index % 3 == count %>
-                  <div class="input-group">
+                  <div class="form_group">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><%=cart.object.chemical%></span>
+                      <span class="input-group-text"><%= cart.object.chemical%></span>
                     </div>
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><%=cart.object.count%></span>
-                    </div>
+                    <%= cart.number_field :count, class:"num"%>
                   </div>
                 <% end %>
                 <% index = index + 1 %>
