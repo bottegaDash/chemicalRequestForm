@@ -1,31 +1,40 @@
 <% if current_user.try(:type) == 'AdminUser' %>
-  <%= form_for(@chemical_item) do |f| %>
-    <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-  <% end %>
 
-  <% @chemical_items.each do |c| %>
-    <% if c.draft? %>
-      <%= form_for(c) do |f| %>
+  <div class="card">
+    <div class="card-body">
+      <%= form_for(@chemical_item) do |f| %>
         <div class="field">
           <%= f.label :name %>
           <%= f.text_field :name %>
-        </div>
-        <div class="actions">
-          <%= f.submit %>
+          <button type="submit" class="chemical_submit_button">
+            <%= fa_icon "file-text" %>
+          </button>
         </div>
       <% end %>
-    <% else %>
-      <%= c.name %>
-      <%= link_to 'delete', c, method: :delete%>
-      <%= link_to 'Edit', edit_chemical_path(c) %>
-    <% end %>
-    <br>
+    </div>
+  </div>
+
+  <% @chemical_items.each do |c| %>
+    <div class="spacer-10"></div>
+    <div class="card">
+      <div class="card-body">
+        <% if c.draft? %>
+          <%= form_for(c) do |f| %>
+            <div class="field">
+              <%= f.label :name %>
+              <%= f.text_field :name %>
+              <button type="submit" class="chemical_submit_button">
+                <%= fa_icon "file-text" %>
+              </button>
+            </div>
+          <% end %>
+        <% else %>
+          <%= c.name %>
+          <%= link_to fa_icon('trash'), c, method: :delete%>
+          <%= link_to fa_icon('pencil-square-o'), edit_chemical_path(c) %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 <% else %>
   You do not have access to this page

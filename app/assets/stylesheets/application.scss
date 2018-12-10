@@ -1,5 +1,6 @@
 @import "bootstrap";
 @import "card";
+@import "font-awesome";
 
 body{
   background-color: red;
@@ -53,5 +54,23 @@ span > .input-group-text{
 }
 
 .chemical-section > .columns-wrapper > .column > .form_group > .num {
-    width:25%;
+  width:25%;
+}
+
+.chemical_submit_button {
+  background: transparent;
+  border: none !important;
+}
+
+.chemical_submit_button:focus {
+  outline: none;
+}
+
+.fa{
+  color: #007bff
+}
+
+.fa {
+  font-size: 1.25em;
+  margin: 0px 10px 0px 10px;
 }
