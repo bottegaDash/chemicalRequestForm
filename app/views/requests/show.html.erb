@@ -1,24 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-body">
 
-<p>
-  <strong>Emergency:</strong>
-  <%= @request.emergency %>
-</p>
+    <div class="chemical-section">
+      <div class="columns-wrapper">
+        <% count = 0 %>
+        <% while count < 3 %>
+          <div class="column">
+            <% index = 0 %>
+            <% @request.carts.each do |cart| %>
+              <% if index % 3 == count %>
+                <div class="form_group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><%= cart.chemical%></span>
+                  </div>
+                  <span class="input-group-text"><%= cart.count%></span>
+                </div>
+              <% end %>
+              <% index = index + 1 %>
+            <%end%>
+          </div>
+          <% count = count + 1 %>
+        <% end %>
+      </div>
+    </div>
 
-<p>
-  <strong>Additional comments:</strong>
-  <%= @request.additional_comments %>
-</p>
+    <% if @request.emergency != "" %>
+      <h3>Emergency</h3>
+      <p><%= @request.emergency %></p>
+    <% end %>
 
-<p>
-  <strong>Status:</strong>
-  <%= @request.status %>
-</p>
+    <h3>Additional Comments</h3>
+    <p><%= @request.additional_comments %></p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @request.date %>
-</p>
-
-<%= link_to 'Edit', edit_request_path(@request) %> |
-<%= link_to 'Back', requests_path %>
+  </div>
+</div>
