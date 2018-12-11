@@ -3,7 +3,14 @@
 @import "font-awesome";
 
 body{
-  background-color: red;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  height: 100%;
+  background-image: url("https://static.wixstatic.com/media/514e1b64850980a553b6053176dbdc2e.wix_mp/v1/fill/w_1280,h_800,al_t/514e1b64850980a553b6053176dbdc2e.wix_mp");
 }
 
 .center {
