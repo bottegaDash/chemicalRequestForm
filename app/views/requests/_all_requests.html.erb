@@ -9,31 +9,71 @@
   </div>
   <div id="collapse<%=num%>" class="collapse" aria-labelledby="heading<%=num%>" data-parent="#accordionExample">
     <div class="card-body">
-      <table>
-        <thead>
-          <tr>
-            <th>Emergency</th>
-            <th>Additional comments</th>
-            <th>Status</th>
-            <th>Date</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% requests.each do |request| %>
-            <tr>
-              <td><%= request.emergency %></td>
-              <td><%= request.additional_comments %></td>
-              <td><%= request.status %></td>
-              <td><%= request.date %></td>
-              <td><%= link_to 'Show', request %></td>
-              <td><%= link_to 'Edit', edit_request_path(request) %></td>
-              <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
+      <section id="body">
+        <% count = 1 %>
+        <% requests.each do |request|%>
+          <% if count % 3 == 1 %>
+            <div class="content<%=num%>">
           <% end %>
-        </tbody>
-      </table>
+          <ul>
+            <li><%= request.emergency %></li>
+            <li><%= request.additional_comments %></li>
+            <li><%= request.status %></li>
+            <li><%= request.date %></li>
+            <li><%= link_to 'Show', request %></li>
+            <li><%= link_to 'Edit', edit_request_path(request) %></li>
+            <li><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          </ul>
+          <% count = count + 1 %>
+          <% if count % 3 == 1 %>
+            </div>
+          <% end %>
+        <% end %>
+      </section>
+
+      <article id="pagin<%=num%>">
+        <nav>
+          <span><a class="prev<%=num%>" href="#"><<</a></span>
+          <ul>
+            <li class="active"><a href="#">1</a></li>
+            <% count = 1%>
+            <% while count < requests.length/3 %>
+              <li><a href="#"><%=count+1%></a></li>
+              <% count = count + 1 %>
+            <% end %>
+          </ul>
+          <span><a class="next<%=num%>" href="#">>></a></span>
+        </nav>
+      </article>
     </div>
   </div>
 </div>
+<script>
+  var nombrePage<%=num%> = $(".content<%=num%>").length;
+
+  showPage<%=num%> = function(pagination) {
+    if (pagination < 0 || pagination >= nombrePage<%=num%>) return;
+
+    $(".content<%=num%>").hide().eq(pagination).show();
+    $("#pagin<%=num%> li").removeClass("active").eq(pagination).addClass("active");
+  }
+
+  // Go to Left
+  $(".prev<%=num%>").click(function(e) {
+    e.preventDefault();
+    showPage<%=num%>($("#pagin<%=num%> ul .active").index() - 1);
+  });
+
+  // Go to Right
+  $(".next<%=num%>").click(function(e) {
+    e.preventDefault();
+    showPage<%=num%>($("#pagin<%=num%> ul .active").index() + 1);
+  });
+
+  $("#pagin<%=num%> ul a").click(function(e) {
+    e.preventDefault();
+    showPage<%=num%>($(this).parent().index());
+  });
+
+  showPage<%=num%>(0)
+</script>
