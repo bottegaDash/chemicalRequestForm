@@ -33,7 +33,7 @@
 
       <article id="pagin<%=num%>">
         <nav>
-          <span><a class="prev<%=num%>" href="#"><<</a></span>
+          <span><a class="prev" href="#"><<</a></span>
           <ul>
             <li class="active"><a href="#">1</a></li>
             <% count = 1%>
@@ -42,38 +42,9 @@
               <% count = count + 1 %>
             <% end %>
           </ul>
-          <span><a class="next<%=num%>" href="#">>></a></span>
+          <span><a class="next" href="#">>></a></span>
         </nav>
       </article>
     </div>
   </div>
 </div>
-<script>
-  var nombrePage<%=num%> = $(".content<%=num%>").length;
-
-  showPage<%=num%> = function(pagination) {
-    if (pagination < 0 || pagination >= nombrePage<%=num%>) return;
-
-    $(".content<%=num%>").hide().eq(pagination).show();
-    $("#pagin<%=num%> li").removeClass("active").eq(pagination).addClass("active");
-  }
-
-  // Go to Left
-  $(".prev<%=num%>").click(function(e) {
-    e.preventDefault();
-    showPage<%=num%>($("#pagin<%=num%> ul .active").index() - 1);
-  });
-
-  // Go to Right
-  $(".next<%=num%>").click(function(e) {
-    e.preventDefault();
-    showPage<%=num%>($("#pagin<%=num%> ul .active").index() + 1);
-  });
-
-  $("#pagin<%=num%> ul a").click(function(e) {
-    e.preventDefault();
-    showPage<%=num%>($(this).parent().index());
-  });
-
-  showPage<%=num%>(0)
-</script>
