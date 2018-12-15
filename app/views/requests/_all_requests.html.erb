@@ -32,17 +32,17 @@
       </section>
 
       <article id="pagin<%=num%>" class="pagin">
-        <nav>
-          <span><a class="prev" href="#"><<</a></span>
-          <ul>
-            <li class="active"><a href="#">1</a></li>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link prev" href="#"><span>&laquo;</span></a></li>
+            <li class="page-item"><a class="page-link num" href="#">1</a></li>
             <% count = 1%>
             <% while count < requests.length/3 %>
-              <li><a href="#"><%=count+1%></a></li>
+              <li class="page-item"><a class="page-link num" href="#"><%=count+1%></a></li>
               <% count = count + 1 %>
             <% end %>
+            <li class="page-item"><a class="page-link next" href="#"><span >&raquo;</span></a></li>
           </ul>
-          <span><a class="next" href="#">>></a></span>
         </nav>
       </article>
     </div>

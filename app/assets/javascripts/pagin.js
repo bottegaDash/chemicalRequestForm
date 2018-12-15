@@ -1,38 +1,35 @@
 $(function() {
+  setup = function(e, t) {
+    e.preventDefault();
+    paginId = t.parent().parent().parent().parent().attr('id')
+    paginId = paginId.split("pagin")[1]
+    return paginId
+  }
+
   showPage = function(pagination, num) {
     nombrePage = $(".content"+num).length;
-    if (pagination < 0 || pagination >= nombrePage) return;
+    if (pagination < 1 || pagination > nombrePage) return;
 
-    $(".content"+num).hide().eq(pagination).show();
+    $(".content"+num).hide().eq(pagination-1).show();
     $("#pagin"+num+" li").removeClass("active").eq(pagination).addClass("active");
   }
 
-
-  // Go to Right
   $(".next").click(function(e) {
-    e.preventDefault();
-    paginId = $(this).parent().parent().parent().attr('id')
-    paginId = paginId.split("pagin")[1]
-    showPage($("#pagin"+paginId+" ul .active").index() + 1, paginId);
+    paginId = setup(e, $(this))
+    showPage($("#pagin"+paginId+" ul .active").index()+1, paginId);
   });
 
-  // Go to Left
   $(".prev").click(function(e) {
-    e.preventDefault();
-    paginId = $(this).parent().parent().parent().attr('id')
-    paginId = paginId.split("pagin")[1]
-    showPage($("#pagin"+paginId+" ul .active").index() - 1, paginId);
+    paginId = setup(e, $(this))
+    showPage($("#pagin"+paginId+" ul .active").index()-1, paginId);
   });
 
-  $("article ul a").click(function(e) {
-    e.preventDefault();
-    paginId = $(this).parent().parent().parent().parent().attr('id')
-    paginId = paginId.split("pagin")[1]
+  $(".num").click(function(e) {
+    paginId = setup(e, $(this))
     showPage($(this).parent().index(), paginId);
   });
 
-
-  showPage(0, "One")
-  showPage(0, "Two")
-  showPage(0, "Three")
+  showPage(1, "One")
+  showPage(1, "Two")
+  showPage(1, "Three")
 })
