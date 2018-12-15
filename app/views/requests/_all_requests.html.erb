@@ -9,27 +9,37 @@
   </div>
   <div id="collapse<%=num%>" class="collapse" aria-labelledby="heading<%=num%>" data-parent="#accordionExample">
     <div class="card-body">
-      <section id="body">
-        <% count = 1 %>
-        <% requests.each do |request|%>
-          <% if count % 3 == 1 %>
-            <div class="content<%=num%>">
-          <% end %>
-          <ul>
-            <li><%= request.emergency %></li>
-            <li><%= request.additional_comments %></li>
-            <li><%= request.status %></li>
-            <li><%= request.date %></li>
-            <li><%= link_to 'Show', request %></li>
-            <li><%= link_to 'Edit', edit_request_path(request) %></li>
-            <li><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-          </ul>
-          <% count = count + 1 %>
-          <% if count % 3 == 1 %>
-            </div>
-          <% end %>
+      <% cpp = 6%>
+      <% count = 1 %>
+      <% requests.each_slice(cpp).to_a.each do |request_slice|%>
+        <% if count % cpp == 1 %>
+          <div class="content<%=num%>">
         <% end %>
-      </section>
+        <div class='pending-homepage row'>
+          <% request_slice.each do |request| %>
+            <div class='homepage-block col-md-3'>
+              <h4>
+                JACK BLACK
+              </h4>
+              <p>
+                <span class="pending-details">Date Needed:</span> <%= request.date %>
+              </p>
+              <p>
+                <span class="pending-details">Additional comments</span> <%= truncate request.additional_comments, length: 42 %>
+              </p>
+              <div class='row'>
+                <div class='col-md-6 column'>
+                  <%= link_to 'Review', edit_request_path(request), class: 'btn btn-success btn-block' %>
+                </div>
+              </div>
+            </div>
+            <% count = count + 1 %>
+          <% end %>
+        </div>
+        <% if count % cpp == 1 %>
+          </div>
+        <% end %>
+      <% end %>
 
       <article id="pagin<%=num%>" class="pagin">
         <nav aria-label="Page navigation example">
@@ -37,7 +47,7 @@
             <li class="page-item"><a class="page-link prev" href="#"><span>&laquo;</span></a></li>
             <li class="page-item"><a class="page-link num" href="#">1</a></li>
             <% count = 1%>
-            <% while count < requests.length/3 %>
+            <% while count <= (requests.length/cpp).ceil %>
               <li class="page-item"><a class="page-link num" href="#"><%=count+1%></a></li>
               <% count = count + 1 %>
             <% end %>
