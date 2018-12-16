@@ -19,7 +19,7 @@
           <% request_slice.each do |request| %>
             <div class='homepage-block col-md-3'>
               <h4>
-                JACK BLACK
+                <%= request.user.info %>
               </h4>
               <p>
                 <span class="pending-details">Date Needed:</span> <%= request.date %>

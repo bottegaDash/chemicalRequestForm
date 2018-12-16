@@ -1,6 +1,7 @@
 class Request < ApplicationRecord
   enum status: {submitted: 1, approved: 2, rejected: 3}
   has_many :carts
+  belongs_to :user
   accepts_nested_attributes_for :carts
   scope :submitted_by, ->(user) { where(user_id: user.id)}
   scope :pending_non_emergency, -> { where(emergency: '') & where(status: 1)}
