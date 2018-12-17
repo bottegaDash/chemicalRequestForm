@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def info
+    p last_name.upcase + ", " + first_name.upcase
     last_name.upcase + ", " + first_name.upcase
   end
 end

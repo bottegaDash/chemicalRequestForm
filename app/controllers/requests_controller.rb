@@ -36,7 +36,7 @@ class RequestsController < ApplicationController
   # GET /requests/1/edit
   def edit
     if current_user.try(:type) == 'AdminUser'
-      @requests = Request.all
+      @request = Request.find(params[:id])
     else
       @request = Request.submitted_by(current_user).find(params[:id])
       respond_to do |format|
@@ -73,11 +73,13 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1.json
   def update
     respond_to do |format|
+      defaults = {:approver=>current_user.info}
+      status_request_params = defaults.merge(status_request_params)
       if @request.update(status_request_params)
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }
         format.json { render :show, status: :ok, location: @request }
       else
-        format.html { render :edit }
+        format.html { render :edit, notice: 'there was an issue' }
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
@@ -107,6 +109,6 @@ class RequestsController < ApplicationController
     end
 
     def status_request_params
-      params.require(:request).permit(:status)
+      params.require(:request).permit(:status, :approver)
     end
 end
