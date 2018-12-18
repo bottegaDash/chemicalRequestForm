@@ -1,7 +1,13 @@
 <div class="card">
   <div class="card-body">
 
-    <p><%= "[#{@request.approver}]" %></p>
+    <h4>
+      <% if @request.submitted? %>
+        <%=@request.status %> by <%=@request.user.info %>
+      <% else %>
+        <%=@request.status %> by <%=@request.approver %>
+      <% end %>
+    </h4>
 
     <div class="chemical-section">
       <div class="columns-wrapper">

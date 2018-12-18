@@ -9,5 +9,3 @@ AdminUser.create!(email: "admintest@test.com", password: "asdfasdf", password_co
 						     first_name: "JonAA", last_name: "SnowAA")
 User.create(email: "test@test.com", password: "asdfasdf",password_confirmation: "asdfasdf",
 						first_name: "Jon", last_name: "Snow")
-
-Anouncement.create!(title: "hello", details: "asdfasdfasdfasdf")
