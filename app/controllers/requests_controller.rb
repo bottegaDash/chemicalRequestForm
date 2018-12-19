@@ -93,6 +93,19 @@ class RequestsController < ApplicationController
     end
   end
 
+  def dosearch
+  end
+
+  def retrive
+    requests = Request.date_span(params[:s],params[:e])
+    @finalHash = {}
+    requests.each do |r|
+      r.carts.each do |c|
+        @finalHash.merge!({c.chemical => c.count}) {|key, v1, v2| v1+v2}
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_request

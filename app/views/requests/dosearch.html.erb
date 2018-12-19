@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-body">
+    <%= form_tag('/requests/retrive') do %>
+      <%= label_tag(:s, "Start:") %>
+      <%= date_field_tag(:s) %>
+      <%= label_tag(:e, "End:") %>
+      <%= date_field_tag(:e) %>
+      <%= submit_tag("Search") %>
+    <% end %>
+  </div>
+</div>
