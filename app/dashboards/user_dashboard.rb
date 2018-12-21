@@ -9,7 +9,6 @@ class UserDashboard < Administrate::BaseDashboard
     remember_created_at: Field::DateTime,
     first_name: Field::String,
     last_name: Field::String,
-    type: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -27,7 +26,6 @@ class UserDashboard < Administrate::BaseDashboard
     :remember_created_at,
     :first_name,
     :last_name,
-    :type,
     :created_at,
     :updated_at,
   ].freeze
@@ -39,6 +37,5 @@ class UserDashboard < Administrate::BaseDashboard
     :remember_created_at,
     :first_name,
     :last_name,
-    :type,
   ].freeze
 end
