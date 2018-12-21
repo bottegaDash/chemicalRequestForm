@@ -9,7 +9,12 @@ Rails.application.routes.draw do
 
       root to: "users#index"
     end
-  resources :requests
+  resources :requests do
+    collection do
+      post 'retrive'
+      get 'dosearch'
+    end
+  end
   devise_for :users
   resources :anouncements
   resources :chemicals

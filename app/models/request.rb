@@ -11,4 +11,7 @@ class Request < ApplicationRecord
   scope :individ_pending_non_emergency, ->(user) { where(emergency: '') & where(status: 1) & where(user_id: user.id)}
   scope :individ_pending_emergency, ->(user) { where(arel_table[:emergency].not_eq('')) & where(status: 1) & where(user_id: user.id)}
   scope :individ_history, ->(user) { where(arel_table[:status].not_eq(1)) & where(user_id: user.id)}
+
+  scope :date_span, ->(startd, endd) { where("date >= ?", startd) & where("date <= ?", endd)}
+
 end
