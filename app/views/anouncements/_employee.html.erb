@@ -1,10 +1,19 @@
-<% @anouncements.each do |a|%>
+<% if @anouncements.length > 0 %>
+  <% @anouncements.each do |a|%>
+    <div class="spacer-10"></div>
+    <div class="card">
+      <div class="card-body">
+        <h2><%= a.title %></h2>
+        <small><%= a.created_at.strftime("%a, %d %b %Y") %></small>
+        <p><%= a.details %></p>
+      </div>
+    </div>
+  <% end %>
+<% else %>
   <div class="spacer-10"></div>
   <div class="card">
     <div class="card-body">
-      <h2><%= a.title %></h2>
-      <small><%= a.created_at.strftime("%a, %d %b %Y") %></small>
-      <p><%= a.details %></p>
+      <p>There are no annoucements</p>
     </div>
   </div>
 <% end %>
